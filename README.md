@@ -17,4 +17,7 @@ npm start
 npm start
 ```
 
-
+Para poder usar graphQL:  
+```
+http://localhost:4000/graphql
+```

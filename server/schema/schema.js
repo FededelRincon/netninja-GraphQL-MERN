@@ -10,9 +10,15 @@ const {
 
 //dummy data
 var books = [
-    { pages: 100 , name: 'name of the wind', genre: 'Fantasy', id: '1'},
-    { pages: 200, name: 'The final empire', genre: 'Fantasy', id: '2'},
-    { pages: 300, name: 'The long Earth', genre: 'Sci-fi', id: '3'},
+    { name: 'name of the wind', genre: 'Fantasy', id: '1'},
+    { name: 'The final empire', genre: 'Fantasy', id: '2'},
+    { name: 'The long Earth', genre: 'Sci-fi', id: '3'},
+];
+
+var authors = [
+    { name: 'Patrick Rothfuss', age: 44, id: '1'},
+    { name: 'Brandon Sanderson', age: 42, id: '2'},
+    { name: 'Terry Pratchett', age: 66, id: '3'},
 ];
 
 
@@ -27,6 +33,15 @@ const BookType = new GraphQLObjectType({
     })
 });
 
+const AuthorType = new GraphQLObjectType({
+    name: 'Author',
+    fields: () => ({
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        age: { type: GraphQLInt },
+    })
+});
+
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: () => ({
@@ -37,7 +52,14 @@ const RootQuery = new GraphQLObjectType({
                 //code to get data from db
                 return books.find(book => book.id == args.id);
             }
-        }
+        },
+        author: {
+            type: AuthorType,
+            args: { id: { type: GraphQLID}},
+            resolve(parent, args){
+                return authors.find(author => author.id == args.id);
+            }
+        },
     })
 })
 

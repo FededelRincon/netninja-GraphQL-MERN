@@ -43,3 +43,38 @@
 //       }
 //     }
 //   }
+
+
+///////////////////////// leccion 12 //////////////////////////
+
+// usando otra dummy data
+var authors = [
+    { name: 'Patrick Rothfuss', age: 44, id: '1'},
+    { name: 'Brandon Sanderson', age: 42, id: '2'},
+    { name: 'Terry Pratchett', age: 66, id: '3'},
+];
+
+// podemos buscar de esta forma, (ahora no es book, sino author) 
+// {
+//     author(id:1){
+//       name,
+//       id,
+//       age
+//       __typename
+//     }
+// }
+
+
+////////////////////////////////////////////////////////////////////
+// Hacer una busqueda con query doble
+// {
+//     author(id:1){
+//       name,
+//       id,
+//       age
+//       __typename
+//     },
+//     book(id:2){
+//       name
+//     }
+// }
